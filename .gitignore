@@ -1,0 +1,10 @@
+# The ide stuff
+.idea
+*.iml
+
+# Binary
+notes
+
+# Non-source files
+*.mp3
+
