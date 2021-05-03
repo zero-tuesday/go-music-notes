@@ -57,7 +57,7 @@ func main() {
 
     var c_mthd *C.char = C.CString("default")
     defer C.free(unsafe.Pointer(c_mthd))
-    var notes *C.aubio_notes_t = C.new_aubio_notes(c_mthd, bufferSize, hopSize, sampleRate)
+    var notes = C.new_aubio_notes(c_mthd, bufferSize, hopSize, sampleRate)
     if notes == nil {
         syscall.Exit(1)
     }
@@ -77,7 +77,7 @@ func main() {
         C.aubio_notes_do(notes, in, out) // analyze data for notes/pitch
         slice := noteData(out.data)
         if slice[0] > 0 {
-            fmt.Println("midi:", slice[0], "vel:", slice[1], "old:", slice[2])
+            fmt.Println("midi:", slice[0], "old:", slice[2])
         }
     }
 
